@@ -1,4 +1,4 @@
-import { args } from "deno";
+const { args } = Deno;
 const name = args[1];
 const seconds = args.slice(2);
 if (!seconds.length) {

@@ -1,6 +1,6 @@
-import { args, exit } from "deno";
+const { args, exit } = Deno;
 import * as flags from "https://deno.land/x/flags@v0.2.5/index.ts";
-import { TaskRunner, TaskDecorator } from "runner.ts";
+import { TaskRunner, TaskDecorator } from "./runner.ts";
 
 const globalRunner = new TaskRunner();
 

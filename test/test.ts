@@ -1,4 +1,4 @@
-import { readFile } from "deno";
+const { readFile } = Deno;
 import { test } from "https://deno.land/x/testing@v0.2.5/mod.ts";
 import { assertEqual } from "https://deno.land/x/pretty_assert@0.1.4/mod.ts";
 import { TaskRunner } from "../runner.ts";

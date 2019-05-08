@@ -1,9 +1,8 @@
-import { ProcessStatus, Closer, Process } from "deno";
-import * as deno from "deno";
+const { ProcessStatus, Closer, Process } = Deno;
 import {
   watch,
   Options as WatchOptions
-} from "https://deno.land/x/watch@1.2.0/mod.ts";
+} from "https://raw.githubusercontent.com/Nautigsam/deno-watch/bugfix/deno-imports/mod.ts";
 import * as path from "https://deno.land/x/fs/path.ts"; // should fix later
 
 type Tasks = { [name: string]: Command };
@@ -34,7 +33,7 @@ class Single implements Command {
     const allArgs = shell
       ? [...getShellCommand(), [this.script, ...args].join(" ")]
       : [...this.script.split(/\s/), ...args];
-    const p = deno.run({
+    const p = Deno.run({
       args: allArgs,
       cwd: cwd,
       stdout: "inherit",
@@ -56,8 +55,8 @@ class Single implements Command {
 }
 
 function getShellCommand(): string[] {
-  let env = deno.env();
-  if (deno.platform.os === "win") {
+  let env = Deno.env();
+  if (Deno.platform.os === "win") {
     return [env.COMSPEC || "cmd.exe", "/D", "/C"];
   } else {
     return [env.SHELL || "/bin/sh", "-c"];
@@ -65,7 +64,7 @@ function getShellCommand(): string[] {
 }
 
 async function kill(p: Process) {
-  const k = deno.run({
+  const k = Deno.run({
     args: ["kill", `${p.pid}`],
     stdout: "inherit",
     stderr: "inherit"
