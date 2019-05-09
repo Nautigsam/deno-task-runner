@@ -1,9 +1,12 @@
-const { ProcessStatus, Closer, Process } = Deno;
 import {
   watch,
   Options as WatchOptions
 } from "https://raw.githubusercontent.com/Nautigsam/deno-watch/bugfix/deno-imports/mod.ts";
 import * as path from "https://deno.land/x/fs/path.ts"; // should fix later
+
+type ProcessStatus = Deno.ProcessStatus;
+type Closer = Deno.Closer;
+type Process = Deno.Process;
 
 type Tasks = { [name: string]: Command };
 interface ResolveContext {

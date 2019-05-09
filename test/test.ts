@@ -1,6 +1,6 @@
 const { readFile } = Deno;
 import { test } from "https://deno.land/x/testing@v0.2.5/mod.ts";
-import { assertEqual } from "https://deno.land/x/pretty_assert@0.1.4/mod.ts";
+import { assertEquals } from "https://deno.land/std/testing/pretty.ts";
 import { TaskRunner } from "../runner.ts";
 
 test(async function basics() {
@@ -26,7 +26,7 @@ end
 `
     .replace(/\r\n/g, "\n")
     .trim();
-  assertEqual(result, expectation);
+  assertEquals(result, expectation);
 });
 
 test(async function shell() {
@@ -42,7 +42,7 @@ world
 `
     .replace(/\r\n/g, "\n")
     .trim();
-  assertEqual(result, expectation);
+  assertEquals(result, expectation);
 });
 
 test(async function errors() {
@@ -95,7 +95,7 @@ test(async function errors() {
     runner.task(
       "failure",
       "echo start",
-      ["deno test/failure.ts", "echo another"],
+      ["deno run test/failure.ts", "echo another"],
       "echo end"
     );
     await runner.run("failure");
